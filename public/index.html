@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>蜗牛爬爬爬...</title>
+</head>
+
+<body style="height:100%">
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <!-- <script type="text/javascript" src="./js/canvas-nest.js"></script> -->
+  <script>
+    //判断是否手机端访问
+    var userAgentInfo = navigator.userAgent.toLowerCase();
+    var Agents = ["android", "iphone"];
+    let flag=false;
+    console.log(userAgentInfo)
+    for (var v = 0; v <=Agents.length-1; v++) {
+      if (userAgentInfo.indexOf('iphone'||'android'||'ipad') === -1 &&flag==false) {
+        var scriptNode = document.createElement("script");
+        scriptNode.setAttribute("type", "text/javascript");
+        scriptNode.setAttribute("src", "./js/canvas-nest.js");
+        document.body.appendChild(scriptNode);
+        flag=true;
+      }else{
+        
+
+      }
+    }
+  </script>
+</body>
+
+</html>
