@@ -8,6 +8,7 @@
                 <app-msgbox></app-msgbox>
             </div>
         </div>
+        
         <app-rightslider></app-rightslider>
     </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
     <div class="content_slider">
         <div class="slider_box">
-            
+            <button v-if="photo" class="app-button"  @click="addphoto">添加照片</button>
         </div>
     </div>
 </template>
@@ -13,10 +13,15 @@ export default {
             
         }
     },
+    props:['photo'],
     computed: {
         
+    },
+    methods:{
+        addphoto(){
+           return  this.$emit('app-addphoto',true)
+        }
     }
-
 }
 </script>
 
