@@ -1,6 +1,6 @@
 import axios  from 'axios'
- axios.defaults.baseURL='http://49.235.240.136:3000/'
-//axios.defaults.baseURL = 'http://localhost:3000';
+ //axios.defaults.baseURL='http://49.235.240.136:3000/'
+axios.defaults.baseURL = 'http://localhost:3000';
 //axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 export default async function ajax(url, way, params){

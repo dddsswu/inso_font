@@ -39,7 +39,7 @@ export default {
         flex-wrap: wrap;
         .msg_box{
         margin-top: 0.5rem;
-        height: 30%;
+        height: auto;
         width: 100%;
         background-color: rgb(235, 235, 235)
         }

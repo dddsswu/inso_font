@@ -8,7 +8,7 @@
                 <div>账号：<input type="text" v-model="user.username" /></div>
                 <div>密码：<input type="password" v-model="user.password"/></div>
                 <div>验证码：<input type="text" v-model="inputCode"/><span >{{randomCode}}</span></div>
-                <div><button @click="Submit">登录</button></div>
+                <div><button class="app-button" @click="Submit">登录</button></div>
             </div>
         </div>
     </div>
@@ -35,6 +35,7 @@ export default {
          async Submit(){
             if(this.pending)return 
             if(this.user.username===""||this.user.password==="") return this.msg='账号/密码不能为空';
+            if(this.inputCode==="")return this.msg='验证码不能为空'
             this.pending=true;
             if(this.compareCode(this.randomCode,this.inputCode)){
                 //输入正确
@@ -43,7 +44,9 @@ export default {
                      if(res.data.code===0)return this.msg=res.data.msg;
                      else {
                          this.login({isLogined:true,username:res.data.username})
-                         alert('登录成功，后续开发功能')
+                         this.$alert('登录成功').then(()=>{
+                             this.$router.push('/')
+                         })
                      }
                 
                 } catch (error) {
@@ -51,11 +54,12 @@ export default {
                 } 
             }else{
                 //输入错误
-                this.init()
                 this.msg='请输入正确验证码';
                 this.inputCode='';
                 this.pending=false;
-                alert(this.msg);
+                this.$alert(this.msg).then(()=>{
+                    this.init()
+                })
             }
             this.pending=false;
         },
@@ -74,6 +78,7 @@ export default {
 </script>
 
 <style scoped lang='less'  >
+@import '../../components/css/common.less' ;
 .content{
     height: 100%;
     .background_img{
