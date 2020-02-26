@@ -16,13 +16,11 @@ export default {
         }
     },
     methods:{
-         init(){
+        async init(){
             try {
-               let List=this.$ajax('/msgbox','GET')
-               List.then((res)=>{
-                   console.log(res)
-                   this.msgList=res.data.data
-               })
+               let List=await this.$ajax('/msgbox','GET')
+               console.log(List)
+                this.msgList=List.data.data
            } catch (error) {
                console.log(error)
            } 

@@ -32,22 +32,20 @@ export default {
             let c2=code2.toLowerCase();
             return c1===c2?true:false;
         },
-         Submit(){
+         async Submit(){
             if(this.pending)return 
             if(this.user.username===""||this.user.password==="") return this.msg='账号/密码不能为空';
             this.pending=true;
             if(this.compareCode(this.randomCode,this.inputCode)){
                 //输入正确
                 try {
-                 let res=   this.$ajax('/login','POST',this.user)
-                 console.log(res)
-                 res.then((res)=>{
+                 let res=await   this.$ajax('/login','POST',this.user);
                      if(res.data.code===0)return this.msg=res.data.msg;
                      else {
                          this.login({isLogined:true,username:res.data.username})
                          alert('登录成功，后续开发功能')
                      }
-                 })
+                
                 } catch (error) {
                     console.log(error)
                 } 
