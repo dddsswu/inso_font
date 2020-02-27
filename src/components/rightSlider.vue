@@ -1,17 +1,24 @@
 <template>
     <div class="content_slider">
         <div class="slider_box">
-            
+            <div class='clock_box'>
+                <app-clock v-show="clock"></app-clock>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import Clock from '../components/clock/clock.vue'
 export default {
     data: function() {
         return {
             
         }
+    },
+    props:['clock'],
+    components:{
+        'app-clock':Clock
     },
     computed: {
         
@@ -31,7 +38,10 @@ export default {
     .slider_box {
         display: flex;
         text-align: center;
+        .clock_box{
+            width: 100%;
         
+        }
     }
 }
 @media screen and (max-width: 700px){
