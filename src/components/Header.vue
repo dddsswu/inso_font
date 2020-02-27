@@ -4,10 +4,10 @@
             <div class="logo">
                 <span >{{logomsg}}</span>
             </div>
-            <div class='main_box' >{{title}}</div>
+            <div @click="toHome" class='main_box' >{{title}}</div>
             <div class="user">
                 <div v-if="isLogined">
-                    <span>用户名：{{username}}</span>
+                    <span>你好：{{username}}</span>
                     <router-link to=''>退出</router-link>
                 </div>
                 <div v-if="!isLogined">
@@ -29,7 +29,13 @@ export default {
         }
     },
     computed: {
-        ...mapState(['isLogined', 'username'])
+        ...mapState(['isLogined', 'username']),
+    },
+    methods:{
+                toHome(){
+                    this.$router.push('/')
+                }
+
     }
 
 }
@@ -58,5 +64,13 @@ export default {
             width: 20%;
         }
     }
+}
+@media screen and(max-width: 700px) {
+    .logo{
+        display: none;
+    }
+    .user{
+        
+        width: 40%!important;}
 }
 </style>

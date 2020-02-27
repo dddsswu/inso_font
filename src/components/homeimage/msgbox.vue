@@ -80,8 +80,8 @@ export default {
   border-radius: 8px;
   height: 7.5rem;
   padding-top: 0.5rem;
-  border: 1px solid red;
   .sendmsgbox {
+    border-radius: 8px;
     height: 5rem;
     width: 99%;
     resize: none;
