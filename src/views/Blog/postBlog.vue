@@ -40,20 +40,22 @@ export default {
     drawpic(e) {
       let _this = this;
       const canvas = document.createElement("canvas");
-      canvas.width = 1024;
-      canvas.height = 720;
       const ctx = canvas.getContext("2d");
       var files = e.target.files;
       var image = new Image();
       image.src = window.URL.createObjectURL(files[0]);
       image.onload = function() {
+      canvas.width = image.height/2;
+      canvas.height = image.width/2;
+        // console.log(image.width)
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
         var base64Img = canvas.toDataURL("image/jpg", 0.8);
         _this.laste = base64Img;
+        // console.log(_this.laste)
       };
       //var dataURL = canvas.toDataURL()
-      console.log(_this.laste);
+      // console.log(_this.laste);
     }
   }
 };
