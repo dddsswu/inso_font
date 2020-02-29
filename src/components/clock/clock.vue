@@ -61,7 +61,6 @@ export default {
 
             /*绘制表盘*/
              drawDial(ctx) {
-                 console.log(111)
                 let pi = Math.PI;
 
                 ctx.clearRect(0, 0, 200, 200); //清除所有内容
