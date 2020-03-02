@@ -29,7 +29,7 @@ export default {
       try {
         let List = await this.$ajax("/msgbox", "GET");
         console.log(List);
-        this.msgList = List.data.data;
+        this.msgList = (List.data.data).reverse();
       } catch (error) {
         console.log(error);
       }
