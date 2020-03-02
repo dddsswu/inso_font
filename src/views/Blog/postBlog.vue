@@ -48,7 +48,6 @@ export default {
             var image = new Image();
             image.src = window.URL.createObjectURL(files[0]);
             image.onload = function() {
-                console.log(image.sizes)
                 // canvas.width = image.height / 2;
                 // canvas.height = image.width / 2;
                 canvas.width = 1366;
@@ -57,27 +56,32 @@ export default {
 
                 var base64Img = canvas.toDataURL("image/jpg", 0.8);
                 _this.imgData = base64Img;
-                console.log(_this.imgData)
+                // console.log(_this.imgData)
             };
             //var dataURL = canvas.toDataURL()
             // console.log(_this.imgData);
         },
-        async submit() {
+         submit() {
+           let _this=this;
             let date = new Date();
             date = [date.getFullYear(), date.getMonth() + 1, date.getDate()]
             date = date.join('-')
             if(this.username==="")return this.$alert('请先登录！').then(()=>{this.$router.push('/login')})
             if(this.msg===""||this.title==="") return this.$alert('请填写好标题/内容！').then(()=>{})
-            let params = { "msg": this.msg,username:this.username, "title": this.title, date:date,"imgData": this.imgData };
-            let res = await this.$ajax('/postblog', 'POST', params);
-            console.log(res)
-            if(res.data.code){
-              this.$alert(res.data.msg).then(()=>{
-                this.$router.push('/')
+            this.$confirm('确认提交吗？').then(function(){
+              let params = { "msg": _this.msg,username:_this.username, "title": _this.title, date:date,"imgData": _this.imgData };
+              let res = _this.$ajax('/postblog', 'POST', params);
+              console.log(res)
+              res.then((res)=>{
+                if(res.data.code){
+                  _this.$alert(res.data.msg).then(()=>{
+                    _this.$router.push('/')
+                  })
+                }else{
+                  _this.$alert(res.data.msg);
+                }
               })
-            }else{
-              this.$alert(res.data.msg);
-            }
+            },function(){})
         }
     }
 };
