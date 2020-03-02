@@ -1,7 +1,7 @@
 import axios  from 'axios'
- axios.defaults.baseURL='http://49.235.240.136:3000/'
-// axios.defaults.baseURL = 'http://localhost:3000';
-//axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+import qs from 'qs';
+// axios.defaults.baseURL='http://49.235.240.136:3000/'
+ axios.defaults.baseURL = 'http://localhost:3000';
 
 export default async function ajax(url, way, params){
     let med=way||'POST';
@@ -9,7 +9,10 @@ export default async function ajax(url, way, params){
     let sendData={
         url:url,
         method:med,
-        data:prm
+        data:qs.stringify(prm),
+        headers:{
+            'Content-type': 'application/x-www-form-urlencoded'
+            },
     }
     console.log(sendData)
     let res=await axios(sendData)
