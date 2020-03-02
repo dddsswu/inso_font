@@ -3,9 +3,9 @@
         <app-leftslider @app-addphoto="addphoto($event)" :photo="true"></app-leftslider>
         <div class="mid_box">
             <div class="title_box">
-              <div>
-                <span>标题：</span><input v-model="title" /><button class="app-button" @click="submit">提交</button></div>
-              </div>
+                <div>
+                    <span>标题：</span><input v-model="title" /><button class="app-button" @click="submit">提交</button></div>
+            </div>
             <textarea class="input_code" v-model="msg"></textarea>
         </div>
         <div class="show_box">
@@ -18,6 +18,7 @@
 
 <script>
 import leftSlider from "../../components/leftSlider";
+import {mapState} from 'vuex'
 export default {
     data: function() {
         return {
@@ -31,6 +32,7 @@ export default {
     components: {
         "app-leftslider": leftSlider
     },
+    computed:{...mapState(['username'])},
     methods: {
         addphoto(val) {
             if (val) {
@@ -46,7 +48,7 @@ export default {
             var image = new Image();
             image.src = window.URL.createObjectURL(files[0]);
             image.onload = function() {
-              console.log(image.sizes)
+                console.log(image.sizes)
                 // canvas.width = image.height / 2;
                 // canvas.height = image.width / 2;
                 canvas.width = 1366;
@@ -55,16 +57,27 @@ export default {
 
                 var base64Img = canvas.toDataURL("image/jpg", 0.8);
                 _this.imgData = base64Img;
-                 console.log(_this.imgData)
+                console.log(_this.imgData)
             };
             //var dataURL = canvas.toDataURL()
             // console.log(_this.imgData);
         },
         async submit() {
-            let params={"msg":this.msg,"title":this.title,"imgData":this.imgData};
-            console.log(params)
-            let res=await this.$ajax('/postblog','POST',params);
+            let date = new Date();
+            date = [date.getFullYear(), date.getMonth() + 1, date.getDate()]
+            date = date.join('-')
+            if(this.username==="")return this.$alert('请先登录！').then(()=>{this.$router.push('/login')})
+            if(this.msg===""||this.title==="") return this.$alert('请填写好标题/内容！').then(()=>{})
+            let params = { "msg": this.msg,username:this.username, "title": this.title, date:date,"imgData": this.imgData };
+            let res = await this.$ajax('/postblog', 'POST', params);
             console.log(res)
+            if(res.data.code){
+              this.$alert(res.data.msg).then(()=>{
+                this.$router.push('/')
+              })
+            }else{
+              this.$alert(res.data.msg);
+            }
         }
     }
 };
