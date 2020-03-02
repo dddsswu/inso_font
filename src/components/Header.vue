@@ -8,7 +8,7 @@
             <div class="user">
                 <div v-if="isLogined">
                     <span>你好：{{username}}</span>
-                    <router-link to=''>退出</router-link>
+                    <span @click="loginout" >退出</span>
                 </div>
                 <div v-if="!isLogined">
                     <span >未登录&emsp;&emsp;</span>  
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState ,mapActions} from 'vuex'
 export default {
     data: function() {
         return {
@@ -32,8 +32,22 @@ export default {
         ...mapState(['isLogined', 'username']),
     },
     methods:{
+        ...mapActions(['loginout']),
                 toHome(){
                     this.$router.push('/')
+                },
+                loginout(){
+                    let _this=this;
+                    this.$confirm('你想要退出嘛？').then(()=>{
+                        console.log(111)
+                        _this.loginout();
+                        _this.$router.go('/')
+                    },()=>{
+                        console.log(222)
+
+                    })
+                        
+                    
                 }
 
     }
