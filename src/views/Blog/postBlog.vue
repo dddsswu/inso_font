@@ -26,7 +26,8 @@ export default {
             count: 0,
             photo: [],
             imgData: "",
-            title: ""
+            title: "",
+            isloading:false,
         };
     },
     components: {
@@ -62,6 +63,8 @@ export default {
             // console.log(_this.imgData);
         },
          submit() {
+             if(this.isloading) return 
+            this.isloading=true;
            let _this=this;
             let date = new Date();
             date = [date.getFullYear(), date.getMonth() + 1, date.getDate()]
@@ -72,6 +75,7 @@ export default {
               let params = { "msg": _this.msg,username:_this.username, "title": _this.title, date:date,"imgData": _this.imgData };
               let res = _this.$ajax('/postblog', 'POST', params);
               console.log(res)
+              _this.isloading=false;
               res.then((res)=>{
                 if(res.data.code){
                   _this.$alert(res.data.msg).then(()=>{

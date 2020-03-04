@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
     data: function() {
         return {
@@ -25,7 +26,7 @@ export default {
     },
     props: ['photo', 'blog'],
     computed: {
-
+        ...mapState(['username'])
     },
     methods: {
         addphoto() {
@@ -33,10 +34,12 @@ export default {
         },
         async initBlog(){
             if(this.blog){
-                let res = await this.$ajax('/postblog/last','GET')
+                let res = await this.$ajax('/postblog/last','POST',{username:this.username})
                 this.title=res.data.title;
                 this.date=res.data.date;
                 this.url='http://localhost:3000'+res.data.imgname;
+               // this.url='http://49.235.240.136:3000'+res.data.imgname;
+
             }
         }
     },
