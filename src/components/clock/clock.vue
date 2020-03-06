@@ -17,7 +17,9 @@ export default {
                 requestAnimationFrame(function step() {
                     _this.drawDial(ctx); //绘制表盘
                     _this.drawAllHands(ctx); //绘制时分秒针
-                    requestAnimationFrame(step);
+                    setTimeout(()=>{
+                        requestAnimationFrame(step);
+                    },100)
                 });
             },
             /*绘制时分秒针*/

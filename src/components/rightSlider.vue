@@ -2,7 +2,10 @@
     <div class="content_slider">
         <div class="slider_box">
             <div class='clock_box'>
-                <app-clock v-show="clock"></app-clock>
+                <app-clock v-if="clock"></app-clock>
+            </div>
+            <div class="chatbox" v-if="groupchat">
+                <button @click="toChat" class="app-button">聊天区</button>
             </div>
         </div>
     </div>
@@ -16,12 +19,17 @@ export default {
             
         }
     },
-    props:['clock'],
+    props:['clock','groupchat'],
     components:{
         'app-clock':Clock
     },
     computed: {
         
+    },
+    methods:{
+        toChat(){
+            this.$router.push('/groupchat')
+        }
     }
 
 }
@@ -36,11 +44,22 @@ export default {
     height: 100%;
     width: @slider-width;
     .slider_box {
+        width: 100%;
         display: flex;
         text-align: center;
+        flex-wrap: wrap;
         .clock_box{
             width: 100%;
         
+        }
+        .chatbox{
+            width: 100%;
+            height: 3.5rem;
+            button{
+                width:100%;
+                height:100%;
+
+            }
         }
     }
 }

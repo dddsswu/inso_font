@@ -9,7 +9,7 @@
             </div>
         </div>
         
-        <app-rightslider :clock="true"></app-rightslider>
+        <app-rightslider :clock="true" :groupchat="true"></app-rightslider>
     </div>
 </template>
 <script>
