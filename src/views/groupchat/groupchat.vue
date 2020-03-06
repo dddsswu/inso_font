@@ -9,10 +9,10 @@
             </div>
             <div class='input_box'>
     
-                <textarea style="width:100%;height:100%" v-model="sendmsg"></textarea>
+                <textarea style="width:100%;height:100%" @keyup.enter="submit" v-model="sendmsg"></textarea>
             </div>
             <div class="btn_box">
-                <button class="app-button" @click="submit">发送</button>
+                <button class="app-button"  @click="submit">发送</button>
     
             </div>
         </div>
@@ -67,6 +67,7 @@ export default {
             let data = JSON.stringify({ msg: this.sendmsg, username: this.username });
             console.log(data)
             ws.send(data)
+            this.sendmsg='';
 
         },
         rendermsg(msg) {
