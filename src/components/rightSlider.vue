@@ -30,7 +30,7 @@ export default {
 <style scoped lang="less">
 @import './css/common.less';
 .content_slider {
-    background-color:@app-orgen; 
+    background-color:@app-gray; 
     color: @app-orgen;
     font-size: 0.9rem;
     height: 100%;

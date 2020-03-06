@@ -16,6 +16,11 @@ const routes = [{
     name: 'postblog',
     component:  () => import( /* webpackChunkName: "about" */ '../views/Blog/postBlog.vue')
     
+  },{
+    path: '/groupchat',
+    name: 'groupchat',
+    component:  () => import( /* webpackChunkName: "about" */ '../views/groupchat/groupchat.vue')
+    
   },
 
 ]
