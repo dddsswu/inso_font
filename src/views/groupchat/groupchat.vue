@@ -12,11 +12,11 @@
                 <textarea style="width:100%;height:100%" @keyup.enter="submit" v-model="sendmsg"></textarea>
             </div>
             <div class="btn_box">
-                <button class="app-button"  @click="submit">发送</button>
+                <button class="app-button" @click="submit">发送</button>{{ws}}
     
             </div>
         </div>
-        <app-right :clock="true"  :groupchat="true"></app-right>
+        <app-right :clock="true" :groupchat="true"></app-right>
     </div>
 </template>
 
@@ -46,6 +46,7 @@ export default {
             let _this = this;
             //后面补上一个登陆验证
             var ws = new WebSocket('ws://localhost:3000/groupchat');
+            _this.ws = ws;
             // 响应onmessage事件:
             ws.onopen = function() {
                 _this.isloaded = true;
@@ -58,7 +59,6 @@ export default {
                 _this.rendermsg(msg.data)
             };
             ws.close = function() {}
-            _this.ws = ws;
         },
         submit() {
             if (this.username === '') return this.$alert('请先登录').then(() => { this.$router.push('/login') })
@@ -67,7 +67,7 @@ export default {
             let data = JSON.stringify({ msg: this.sendmsg, username: this.username });
             console.log(data)
             ws.send(data)
-            this.sendmsg='';
+            this.sendmsg = '';
 
         },
         rendermsg(msg) {
@@ -77,6 +77,7 @@ export default {
             //alert(data.msg)
         },
         out() {
+            this.$toast('你已经离开聊天区了哦~')
             let ws = this.ws;
             let data = JSON.stringify({ msg: '已经退出', username: this.username });
             console.log(data)
@@ -87,7 +88,6 @@ export default {
         this.init()
     },
     beforeDestroy() {
-        console.log(111)
         this.out();
     }
 }
