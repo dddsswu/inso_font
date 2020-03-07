@@ -1,7 +1,8 @@
 import axios  from 'axios'
 import qs from 'qs';
+import URL from './url.js'
 // axios.defaults.baseURL='http://49.235.240.136:3000/'
- axios.defaults.baseURL = 'http://localhost:3000';
+ axios.defaults.baseURL = URL();
 
 export default async function ajax(url, way, params){
     let med=way||'POST';

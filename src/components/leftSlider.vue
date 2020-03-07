@@ -15,7 +15,8 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState} from 'vuex';
+import URL from '../api/url'
 export default {
     data: function() {
         return {
@@ -37,7 +38,7 @@ export default {
                 let res = await this.$ajax('/postblog/last','POST',{username:this.username})
                 this.title=res.data.title;
                 this.date=res.data.date;
-                this.url='http://localhost:3000'+res.data.imgname;
+                this.url=URL()+res.data.imgname;
                // this.url='http://49.235.240.136:3000'+res.data.imgname;
 
             }

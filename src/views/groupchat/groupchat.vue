@@ -24,6 +24,7 @@
 import leftslider from '../../components/leftSlider'
 import rightslider from '../../components/rightSlider'
 import { mapState } from 'vuex'
+import URL from '../../api/url'
 
 export default {
     data: function() {
@@ -45,7 +46,9 @@ export default {
         init() {
             let _this = this;
             //后面补上一个登陆验证
-            var ws = new WebSocket('ws://localhost:3000/groupchat');
+            let url=URL();
+            url=url.replace(/^http/,'ws')+'/groupchat';
+            var ws = new WebSocket(url);
             _this.ws = ws;
             // 响应onmessage事件:
             ws.onopen = function() {
@@ -65,7 +68,6 @@ export default {
             if (!this.isloaded) return this.$alert('重新进入').then(() => { this.$router.push('/') })
             let ws = this.ws;
             let data = JSON.stringify({ msg: this.sendmsg, username: this.username });
-            console.log(data)
             ws.send(data)
             this.sendmsg = '';
 
