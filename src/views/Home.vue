@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     ...mapState(["username", "isLogined"])
-  }
+  },
 };
 </script>
 <style scoped lang="less">
