@@ -12,7 +12,7 @@
                 <textarea style="width:100%;height:100%" @keyup.enter="submit" v-model="sendmsg"></textarea>
             </div>
             <div class="btn_box">
-                <button class="app-button" @click="submit">发送</button>{{ws}}
+                <button class="app-button" @click="submit">发送</button>
     
             </div>
         </div>

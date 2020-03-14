@@ -14,14 +14,17 @@ const routes = [{
   }, {
     path: '/postblog',
     name: 'postblog',
-    component:  () => import( /* webpackChunkName: "about" */ '../views/Blog/postBlog.vue')
-    
-  },{
+    component: () => import( /* webpackChunkName: "about" */ '../views/Blog/postBlog.vue')
+
+  }, {
     path: '/groupchat',
     name: 'groupchat',
-    component:  () => import( /* webpackChunkName: "about" */ '../views/groupchat/groupchat.vue')
-    
-  },
+    component: () => import( /* webpackChunkName: "about" */ '../views/groupchat/groupchat.vue')
+  }, {
+    path: '/posthope',
+    name: 'posthope',
+    component: () => import( /* webpackChunkName: "about" */ '../views/posthope/posthope.vue')
+  }
 
 ]
 
