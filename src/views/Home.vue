@@ -1,6 +1,6 @@
 <template >
   <div class="content_home">
-    <app-leftslider :blog="true"></app-leftslider>
+    <app-leftslider :blog="true" :textblog="true"></app-leftslider>
     <div class="main_fun">
       <app-image></app-image>
       <div class="msg_box">
