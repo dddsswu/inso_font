@@ -5,25 +5,20 @@
         <div class="img_box">
           <img class="img" :src="url" />
         </div>
-        <div class="title_box">{{ title }}</div>
-        <div class="title_box">{{ date }}</div>
+        <div class="rijimsg">{{ title }}</div>
+        <div class="rijimsg">{{ date }}</div>
       </div>
       <div class="func_area">
-        <button v-if="photo" class="app-button" @click="addphoto">
-          添加照片
-        </button>
-        <button v-if="textblog" class="app-button" @click="toblog">
-          写日记
-        </button>
-        <button class="app-button" @click="toblog">待开发</button>
-        <button class="app-button" @click="toblog">谢谢您点进来</button>
+        <button v-if="photo" class="app-button" @click="addphoto">添加照片</button>
+        <button v-if="textblog" class="app-button" @click="toblog">写日记</button>
+        <button class="app-button">待开发</button>
+        <button class="app-button">谢谢您点进来</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
 import URL from "../api/url";
 export default {
   data: function() {
@@ -33,13 +28,20 @@ export default {
       date: ""
     };
   },
-  props: ["photo", "blog", "textblog"],
-  computed: {
-    ...mapState(["username"])
-  },
+  props: ["photo", "blog", "textblog", "isLogined", "username"],
+  computed: {},
   methods: {
     toblog() {
-      this.$router.push("/postblog");
+      if (this.isLogined && this.username) {
+        this.$router.push("/postblog");
+      } else {
+        this.$confirm("需要登录后才可以进入哦~").then(
+          () => {
+            this.$router.push("/login");
+          },
+          () => {}
+        );
+      }
     },
     addphoto() {
       return this.$emit("app-addphoto", true);
@@ -84,6 +86,9 @@ export default {
       height: 50%;
       border-radius: 8px;
       border: 1px solid black;
+      .rijimsg {
+        font-size: 1.12rem;
+      }
       .img_box {
         width: 100%;
         height: 80%;

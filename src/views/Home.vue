@@ -1,6 +1,6 @@
 <template >
   <div class="content_home">
-    <app-leftslider :blog="true" :textblog="true"></app-leftslider>
+    <app-leftslider :username="username" :isLogined="isLogined" :blog="true" :textblog="true"></app-leftslider>
     <div class="main_fun">
       <app-image></app-image>
       <div class="msg_box">
@@ -9,7 +9,13 @@
       </div>
     </div>
 
-    <app-rightslider :posthope="true" :clock="true" :groupchat="true"></app-rightslider>
+    <app-rightslider
+      :username="username"
+      :isLogined="isLogined"
+      :posthope="true"
+      :clock="true"
+      :groupchat="true"
+    ></app-rightslider>
   </div>
 </template>
 <script>
@@ -17,12 +23,16 @@ import msgBox from "../components/homeimage/msgbox.vue";
 import LeftSlider from "../components/leftSlider.vue";
 import RightSlider from "../components/rightSlider.vue";
 import Image from "../components/homeimage/Homeimage.vue";
+import { mapState } from "vuex";
 export default {
   components: {
     "app-leftslider": LeftSlider,
     "app-image": Image,
     "app-rightslider": RightSlider,
     "app-msgbox": msgBox
+  },
+  computed: {
+    ...mapState(["username", "isLogined"])
   }
 };
 </script>
@@ -43,6 +53,9 @@ export default {
       height: auto;
       width: 100%;
       background-color: rgb(235, 235, 235);
+      span {
+        font-size: 20px;
+      }
     }
   }
 }

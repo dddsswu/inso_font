@@ -20,14 +20,25 @@ export default {
   data: function() {
     return {};
   },
-  props: ["clock", "groupchat", "posthope"],
+  props: ["clock", "groupchat", "posthope", "isLogined", "username"],
   components: {
     "app-clock": Clock
   },
-  computed: {},
   methods: {
+    yanzhenlogin(url) {
+      if (this.isLogined && this.username) {
+        this.$router.push(url);
+      } else {
+        this.$confirm("需要登录后才可以进入哦~").then(
+          () => {
+            this.$router.push("/login");
+          },
+          () => {}
+        );
+      }
+    },
     toChat() {
-      this.$router.push("/groupchat");
+      this.yanzhenlogin("/groupchat");
     },
     toStar() {
       this.$router.push("/posthope");
