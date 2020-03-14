@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="header_box">
-      <div class="logo">
+      <div @click="goBack" class="logo">
         <span>{{ logomsg }}</span>
       </div>
       <div @click="toHome" class="main_box">{{ title }}</div>
@@ -24,7 +24,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   data: function() {
     return {
-      logomsg: "蜗牛中...",
+      logomsg: "蜗牛中...(可以后退)",
       title: "醉后不知天在水，满床星梦压星河。"
     };
   },
@@ -45,6 +45,9 @@ export default {
         },
         () => {}
       );
+    },
+    goBack() {
+      this.$router.go(-1);
     }
   }
 };
