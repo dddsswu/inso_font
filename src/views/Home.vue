@@ -34,6 +34,7 @@ export default {
   computed: {
     ...mapState(["username", "isLogined"])
   },
+  methods: {}
 };
 </script>
 <style scoped lang="less">

@@ -32,7 +32,7 @@ export default {
     ...mapState(["isLogined", "username"])
   },
   methods: {
-    ...mapActions(["loginout"]),
+    ...mapActions(["loginout", "login"]),
     toHome() {
       this.$router.push("/");
     },
@@ -48,7 +48,19 @@ export default {
     },
     goBack() {
       this.$router.go(-1);
+    },
+    init() {
+      if (!this.username && !this.isLogined) {
+        let username = sessionStorage.getItem("username");
+        let isLogined = sessionStorage.getItem("isLogined");
+        if (username && isLogined) {
+          this.login({ username, isLogined });
+        }
+      }
     }
+  },
+  created() {
+    this.init();
   }
 };
 </script>
