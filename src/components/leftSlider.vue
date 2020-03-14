@@ -5,12 +5,16 @@
         <div class="img_box">
           <img class="img" :src="url" />
         </div>
-        <div class="title_box">{{title}}</div>
-        <div class="title_box">{{date}}</div>
+        <div class="title_box">{{ title }}</div>
+        <div class="title_box">{{ date }}</div>
       </div>
       <div class="func_area">
-        <button v-if="photo" class="app-button" @click="addphoto">添加照片</button>
-        <button v-if="textblog" class="app-button" @click="toblog">写日记</button>
+        <button v-if="photo" class="app-button" @click="addphoto">
+          添加照片
+        </button>
+        <button v-if="textblog" class="app-button" @click="toblog">
+          写日记
+        </button>
         <button class="app-button" @click="toblog">待开发</button>
         <button class="app-button" @click="toblog">谢谢您点进来</button>
       </div>

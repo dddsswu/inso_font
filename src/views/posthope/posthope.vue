@@ -33,7 +33,7 @@ export default {
     setTimeout(() => {
       _this.getHeight();
       _this.getWidth();
-    }, 3000);
+    }, 5000);
   }
 };
 </script>
