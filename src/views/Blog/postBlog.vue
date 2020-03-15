@@ -1,9 +1,6 @@
 <template>
   <div class="blog_box">
-    <app-leftslider
-      @app-addphoto="addphoto($event)"
-      :photo="true"
-    ></app-leftslider>
+    <app-leftslider @app-addphoto="addphoto($event)" :photo="true"></app-leftslider>
     <div class="mid_box">
       <div class="title_box">
         <div class="submit_box">
@@ -12,11 +9,7 @@
           <button class="app-button" @click="submit">提交</button>
         </div>
       </div>
-      <textarea
-        class="input_code"
-        v-model="msg"
-        placeholder="请在这输入日记内容"
-      ></textarea>
+      <textarea class="input_code" v-model="msg" placeholder="请在这输入日记内容"></textarea>
     </div>
     <div class="show_box">
       <div class="img_box" v-if="imgData">
@@ -170,12 +163,12 @@ export default {
     border: 1px solid black;
     .img_box {
       width: 100%;
-      height: 40%;
+      height: 60%;
       border: 1px solid yellow;
       margin-bottom: -20rem;
       img {
-        width: 100%;
         height: 100%;
+        max-width: 100%;
       }
     }
     .input_blog {

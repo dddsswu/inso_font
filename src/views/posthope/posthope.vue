@@ -3,7 +3,7 @@
     <div
       v-for="n in shineStar"
       :key="n"
-      :class="n%2===1?'shinestar':'slowshinestar'"
+      :class="n%5===0?'shinestar':'slowshinestar'"
       :style="'left:'+getWidth()+';top:'+getHeight()"
     ></div>
     <div class="moon"></div>
